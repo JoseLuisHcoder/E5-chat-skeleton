@@ -15,8 +15,31 @@ const findAllConversations = async() => {
             }
         }
     })
+    return data = await Conversations.findOne({
+        where: {
+            id:id
+        },
+        include: {
+
+        }
+    })
+}
+
+const findConversationById = async (id) => {
+    const data = await Conversations.findOne({
+        where: {
+            id: id
+        },
+        include: {
+            model: Participants,
+            include: {
+                model: Users
+            }
+        }
+    })
     return data
 }
+
 
 const createConversation = async (obj) => {
     const newConversation = await Conversations.create({
@@ -45,6 +68,24 @@ const createConversation = async (obj) => {
     }
 }
 
+const updateConversation = async (id, obj) => {
+    const data = await Conversations.update(obj, {
+        where: {
+            id:id
+        }
+    })
+    return data[0]
+}
+
+const deleteConversation = async (id, obj) => {
+    const data = await Conversations.destroy(obj, {
+        where: {
+            id:id
+        }
+    })
+    return data
+}
+
 // el ejemplo de como genera la convesacion esta en el video, con usuarios creados
 
 // ejemplo, se debe tener dos usarios creados a los cuales correspondes los datos de abajo
@@ -58,5 +99,8 @@ const createConversation = async (obj) => {
 
 module.exports = {
     findAllConversations,
-    createConversation
+    createConversation,
+    findConversationById,
+    updateConversation,
+    deleteConversation
 }

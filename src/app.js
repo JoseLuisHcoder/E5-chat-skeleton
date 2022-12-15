@@ -45,6 +45,12 @@ app.get('/', (req, res) => {
     })
 })
 
+// app.get('./:nombre/:edad', (req, res) => {
+//     res.status(200).json({
+//         message:`Hola ${req.params.nombre}, felices ${req.params.edad} años`
+//     })
+// })
+
 app.use('/api/v1/users', userRouter) // 4444
 app.use('api/v1/auth', authRouter) // 5555
 app.use('/api/v1/conversations', conversationRouter)
