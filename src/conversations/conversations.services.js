@@ -11,7 +11,7 @@ const getAllConversations = (req, res) => {
 }
 
 const getConversationById = (req, res) => {
-    const id = req.params.converstaion_id
+    const id = req.params.conversation_id
     conversationController.findConversationById(id)
         .then(data => {
             if(data){
@@ -25,7 +25,7 @@ const getConversationById = (req, res) => {
         })
 }
 
-const postConversation = (req ,res) => {
+const postConversation = (req, res) => {
     const {title, imageUrl, participantId} = req.body
     const ownerId = req.user.id 
     conversationController.createConversation({title, imageUrl, participantId, ownerId})
@@ -42,7 +42,7 @@ const postConversation = (req ,res) => {
 }
 
 const patchConversation = (req, res) => {
-    const id = req.params.coversation_id
+    const id = req.params.conversation_id
     const  {title, imageUrl} = req.body
     conversationController.updateConversation({title, imageUrl})
         .then (data => {

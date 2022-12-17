@@ -45,7 +45,7 @@ const createConversation = async (obj) => {
     const newConversation = await Conversations.create({
         id: uuid.v4(),
         title:obj.title,
-        imgUrl:obj.imgUrl,
+        imageUrl:obj.imageUrl,
         userId:obj.ownerId   //creador de la converasion (owner)  
     })
 
