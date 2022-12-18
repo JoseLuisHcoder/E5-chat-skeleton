@@ -29,7 +29,7 @@ db.authenticate()
 //Sincronizando las base de datos con los models
 db.sync()
     .then(() => console.log('Database Synced'))
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err))
 
 //Initialize my models relations
 initModels()
@@ -52,10 +52,10 @@ app.get('/', (req, res) => {
 // })
 
 app.use('/api/v1/users', userRouter) // 4444
-app.use('api/v1/auth', authRouter) // 5555
+app.use('/api/v1/auth', authRouter) // 5555
 app.use('/api/v1/conversations', conversationRouter)
 
 
-app.listen((config.api.port, () => {
+app.listen(config.api.port, () => {
     console.log(`Server started on ${config.api.host}`);
-}))
+})

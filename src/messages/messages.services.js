@@ -4,7 +4,7 @@ const messageControllers = require('./messages.controllers')
 const postMessage = (req, res) => {
     const userId = req.user.id
     const conversationId = req.params.conversation_id
-    const {message} = req.body
+    const { message } = req.body
 
     messageControllers.createMessage({userId, conversationId, message})
         .then(data => {
@@ -17,4 +17,6 @@ const postMessage = (req, res) => {
         })
 }
 
-module.exports = postMessage
+module.exports = { 
+    postMessage
+}

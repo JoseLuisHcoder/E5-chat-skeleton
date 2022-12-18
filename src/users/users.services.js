@@ -27,7 +27,7 @@ const getUserById = (req, res) => {
         })
 }
 
-const getMyuser = (req, res) => {
+const getMyUser = (req, res) => {
     const id = req.user.id
     userControllers.findUserById(id)
         .then((data) => {
@@ -41,7 +41,15 @@ const getMyuser = (req, res) => {
 const postUser = (req, res) => {
     const {firstNAme, LastName, email, password, gender, birthday} = req.body
     userControllers.createUser({firstNAme, LastName, email, password, gender, birthday})
-        .then((data) => {
+        .then(async (data) => {
+            await mailer.sendMail({
+                from: '<test.academlo@gmail.com>',
+                to: data.email,
+                subject: `Bienvenido ${data.firstName}`,
+                html: `<h1>Bienvenido a nuestra app ${data.firstName}</h1> <a href="#" class="myButton">turquoise</a> `,
+                text: 'Que gusto verte por aqui',
+            })
+
             res.status(201).json(data)
         })
         .catch((err) => {
@@ -117,7 +125,7 @@ const deleteMyUser = (req, res) => {
 
 module.exports = {
     getAllUsers,
-    getMyuser,
+    getMyUser,
     getUserById,
     postUser,
     patchMyUser,

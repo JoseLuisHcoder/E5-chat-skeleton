@@ -15,7 +15,7 @@ const findAllUsers = async () => {
     return data
 }
 
-const findUSerById = async (id) => {
+const findUserById = async (id) => {
     const data = await Users.findOne({
         attributes: {
             exclude:['password', 'createdAt', 'updateAt']
@@ -74,7 +74,7 @@ const deleteUser = async () => {
 
 module.exports = {
     findAllUsers,
-    findUSerById,
+    findUserById,
     findUserByEmail,
     createUser,
     updateUser,
