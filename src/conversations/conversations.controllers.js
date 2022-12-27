@@ -2,27 +2,23 @@ const uuid = require('uuid')
 
 const Conversations = require('../models/conversations.models')
 const Participants = require('../models/participants.models')
+const Users = require('../models/users.models')
 
-
-const findAllConversations = async() => {
+const findAllConversations = async(userId) => {
     const data = await Conversations.findAll({
         include: {
             model: Participants,
-            include: {
+            where: {
+                userId:userId
+            },
+            include:{
                 model:{
                     model:Users
                 }
             }
         }
     })
-    return data = await Conversations.findOne({
-        where: {
-            id:id
-        },
-        include: {
-
-        }
-    })
+    return data 
 }
 
 const findConversationById = async (id) => {
